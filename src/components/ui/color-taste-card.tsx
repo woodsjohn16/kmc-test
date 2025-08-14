@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { withClickTracking } from "@/lib/track-click";
 import { Modal } from "./modal";
 
@@ -21,38 +22,58 @@ export function ColorTasteCard({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="max-w-[372px]">
-      <button 
+    <motion.div 
+      className="max-w-[372px]"
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", bounce: 0.4 }}
+    >
+      <motion.button 
         type="button"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           withClickTracking()(e);
           setIsModalOpen(true);
         }} 
-        className="block w-full transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white/20"
+        className="block w-full focus:outline-none focus:ring-2 focus:ring-white/20"
+        whileTap={{ scale: 0.98 }}
       >
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          className="w-[372px] h-[300px] object-cover"
-          width={372}
-          height={300}
-          priority
-        />
-      </button>
-      <p className="font-open-sans text-center text-[21px] mt-[30px] font-bold">
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", bounce: 0.4 }}
+        >
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            className="w-[372px] h-[300px] object-cover"
+            width={372}
+            height={300}
+            priority
+          />
+        </motion.div>
+      </motion.button>
+      <motion.p 
+        className="font-open-sans text-center text-[21px] mt-[30px] font-bold"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
         {color}
-      </p>
-      <p className="font-open-sans font-[100] text-[21px] text-center">
+      </motion.p>
+      <motion.p 
+        className="font-open-sans font-[100] text-[21px] text-center"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
         {description}
-      </p>
+      </motion.p>
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <div className="bg-black/40 p-4 rounded-lg backdrop-blur-md">
           <Image
             src={imageSrc}
             alt={imageAlt}
-            className="max-h-[80vh] w-auto object-contain rounded m-auto"
+            className="w-full h-auto max-h-[80vh] object-contain"
             width={744}
             height={600}
             priority
@@ -63,6 +84,6 @@ export function ColorTasteCard({
           </div>
         </div>
       </Modal>
-    </div>
+    </motion.div>
   );
 }
