@@ -2,13 +2,25 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { withClickTracking } from "@/lib/track-click";
+import { useState, useEffect } from "react";
+import { useClickTracking } from "@/lib/track-click";
 import { SectionTitle } from "@/components/ui/section-title";
 import cookingPot from "@/assets/images/cooking-pot.svg";
 import experiment from "@/assets/images/experiment.svg";
 import perfectEggs from "@/assets/images/perfect-eggs.svg";
 
 export function WhatDoesCookingMean() {
+  const handleClick = useClickTracking();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <section className="flex justify-center items-start gap-[30px] px-5 md:px-[147px] py-[60px] md:py-[120px]">
       <motion.div 
@@ -32,7 +44,7 @@ export function WhatDoesCookingMean() {
         >
           <a
             href="#boiling"
-            onClick={withClickTracking()}
+            onClick={handleClick}
             className="block h-full transition-transform duration-300 hover:scale-105"
           >
             <Image
@@ -42,6 +54,7 @@ export function WhatDoesCookingMean() {
               width={372}
               height={600}
               priority
+              unoptimized
             />
           </a>
         </motion.div>
@@ -65,7 +78,7 @@ export function WhatDoesCookingMean() {
           >
             <a
               href="#preparation"
-              onClick={withClickTracking()}
+              onClick={handleClick}
               className="block h-full transition-transform duration-300 hover:scale-105"
             >
               <Image
@@ -75,6 +88,7 @@ export function WhatDoesCookingMean() {
                 width={372}
                 height={295}
                 priority
+                unoptimized
               />
             </a>
           </motion.div>
@@ -90,7 +104,7 @@ export function WhatDoesCookingMean() {
           >
             <a
               href="#eggs"
-              onClick={withClickTracking()}
+              onClick={handleClick}
               className="block h-full transition-transform duration-300 hover:scale-105"
             >
               <Image
@@ -100,6 +114,7 @@ export function WhatDoesCookingMean() {
                 width={372}
                 height={295}
                 priority
+                unoptimized
               />
             </a>
           </motion.div>

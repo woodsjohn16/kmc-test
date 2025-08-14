@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { withClickTracking } from "@/lib/track-click";
+import { useClickTracking } from "@/lib/track-click";
 import { Modal } from "./modal";
 
 interface ColorTasteCardProps {
@@ -20,6 +20,7 @@ export function ColorTasteCard({
   description,
 }: ColorTasteCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleClick = useClickTracking();
 
   return (
     <motion.div 
@@ -31,7 +32,7 @@ export function ColorTasteCard({
         type="button"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
-          withClickTracking()(e);
+          handleClick(e);
           setIsModalOpen(true);
         }} 
         className="block w-full focus:outline-none focus:ring-2 focus:ring-white/20"
@@ -77,6 +78,7 @@ export function ColorTasteCard({
             width={744}
             height={600}
             priority
+            unoptimized
           />
           <div className="mt-4 text-center">
             <h3 className="text-[21px] font-bold mb-2">{color}</h3>

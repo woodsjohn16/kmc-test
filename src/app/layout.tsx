@@ -26,8 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-base-dark text-white selection:bg-white selection:text-base-dark">
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body suppressHydrationWarning className="min-h-screen bg-base-dark text-white selection:bg-white selection:text-base-dark">
         <div className={`${openSans.variable} ${geist.className}`}>
           {children}
         </div>

@@ -1,12 +1,12 @@
 'use client';
 
-export function trackClick(element: HTMLElement) {
-  console.log('Clicked element:', element);
-}
+import { useCallback } from 'react';
+import type { MouseEventHandler } from 'react';
 
-export function withClickTracking(callback?: (e: React.MouseEvent<HTMLElement>) => void) {
-  return (e: React.MouseEvent<HTMLElement>) => {
-    trackClick(e.currentTarget);
-    callback?.(e);
-  };
+export function useClickTracking(): MouseEventHandler {
+  return useCallback((e) => {
+    if (typeof window === 'undefined') return;
+    const element = e.currentTarget;
+    console.log('Clicked element:', element);
+  }, []);
 }

@@ -8,25 +8,28 @@ interface PortalProps {
 }
 
 export function Portal({ children }: PortalProps) {
-  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   useLayoutEffect(() => {
+    setMounted(true);
     let node = document.getElementById('modal-root');
     if (!node) {
       node = document.createElement('div');
       node.id = 'modal-root';
       document.body.appendChild(node);
     }
-    setPortalNode(node);
 
     return () => {
-      if (node && !document.getElementById('modal-root')) {
+      if (node && document.getElementById('modal-root')) {
         node.remove();
       }
     };
   }, []);
 
-  if (!portalNode) return null;
+  if (!mounted) return null;
 
-  return createPortal(children, portalNode);
+  return createPortal(
+    children,
+    document.getElementById('modal-root') as HTMLElement
+  );
 }
