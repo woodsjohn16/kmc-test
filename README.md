@@ -1,4 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Molecular Gastronomy Website
+
+A responsive website showcasing molecular gastronomy concepts with interactive elements and modern web practices.
+
+## Technical Decisions
+
+### Framework Choice
+- **Next.js with App Router**: Chosen for its built-in build step, TypeScript support, and modern development features.
+- **React 18+**: Provides stable foundation for component-based architecture.
+
+### Styling
+- **Tailwind CSS**: Used for rapid development and consistent responsive design.
+- **Mobile-first approach**: Layout adapts from 320px up to desktop.
+- **CSS-in-JS avoided**: Keeping styles in CSS files for better performance and maintainability.
+
+### JavaScript Implementation
+- **TypeScript**: For type safety and better development experience.
+- **ES6+ features**: Modern JavaScript syntax for cleaner code.
+- **Click tracking**: Custom hook for logging anchor interactions.
+
+### Component Architecture
+- **Semantic HTML5**: Using proper elements for better accessibility.
+- **Reusable components**: UI elements separated for maintainability.
+- **CMS-ready**: Components handle variable content lengths.
+
+### Image Handling
+- **Next.js Image**: For automatic optimization and responsive images.
+- **SVG assets**: Vector graphics for crisp display at all sizes.
+
+### Performance
+- **Font optimization**: Using `next/font` for optimal loading.
+- **Client-side features**: Modal and animations only load on client.
 
 ## Getting Started
 
